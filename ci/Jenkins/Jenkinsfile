@@ -44,13 +44,13 @@ pipeline {
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "devops-demo-project"
-            GIT_USER_NAME = "davidvn15"
+            GIT_USER_NAME = "canhnd@newwave.com.vn"
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
-                    git config user.email "canhndnsm15@gmail.com"
-                    git config user.name "canhnd15"
+                    git config user.email "canhnd@newwave.com.vn"
+                    git config user.name "canhnd@newwave.com.vn"
                     sed -i "s/tag: .*/tag: \"${build_version}\"/" helm/app/values.yaml
                     git add helm/app/values.yaml
                     git commit -m "Update deployment image to version ${build_version}"
